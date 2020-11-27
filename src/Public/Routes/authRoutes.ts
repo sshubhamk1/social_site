@@ -1,7 +1,7 @@
 import { Router } from "express";
 
 // importing all controllers of auths
-import * as authController from "../Controllers/authController";
+import * as authController from "../Controllers/authUserController";
 
 // creating router for auths
 const router = Router();

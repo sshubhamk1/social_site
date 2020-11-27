@@ -20,7 +20,7 @@ export const postSignIn: RequestHandler = async (
     if (!isMatch) throw "Invalid credentials";
 
     const auth_token: any = await generateToken({
-      id: user.guid,
+      id: user.username,
       first_name: user.first_name,
     });
 
@@ -43,7 +43,7 @@ export const postSignup: RequestHandler = async (
       last_name,
       email,
       password: await bcrpyt.hash(password, 10),
-      guid: uuidv4(),
+      username: uuidv4(),
     };
 
     const user = await Users.create(userData);
@@ -53,7 +53,7 @@ export const postSignup: RequestHandler = async (
       last_name: user.last_name,
       email: user.email,
       password: password,
-      guid: user.guid,
+      username: user.username,
     };
 
     return res.status(200).json({ error: false, user_data });

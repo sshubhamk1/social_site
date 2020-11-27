@@ -21,6 +21,11 @@ export = {
         allowNull: true,
       },
 
+      username: {
+        type: DataTypes.STRING,
+        unique: true,
+        allowNull: false,
+      },
       first_name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -31,17 +36,27 @@ export = {
       },
       email: {
         type: DataTypes.STRING,
-        allowNull: false,
         unique: true,
+      },
+      phone: {
+        type: DataTypes.STRING,
+        unique: true,
+      },
+      country: {
+        type: DataTypes.STRING,
+        defaultValue: "india",
+      },
+      gender: {
+        type: DataTypes.STRING,
+        allowNull: true,
       },
       password: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      guid: {
-        type: DataTypes.UUIDV4,
-        allowNull: false,
-        unique: true,
+      reset_token: {
+        type: DataTypes.STRING,
+        allowNull: true,
       },
     });
   },
