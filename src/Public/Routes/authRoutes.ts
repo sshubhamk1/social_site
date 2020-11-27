@@ -49,7 +49,7 @@ const router = Router();
 // giving routing path for different controllers
 /**
  *  @swagger
- *  /api/public/auth/signin:
+ *  /api/public/user/auth/signin:
  *  post:
  *      tags:
  *          - Public
@@ -70,7 +70,7 @@ router.route("/signin").post(authController.postSignIn);
 
 /**
  *  @swagger
- *  /api/public/auth/signup:
+ *  /api/public/user/auth/signup:
  *  post:
  *      tags:
  *          - Public

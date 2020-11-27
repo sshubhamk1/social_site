@@ -22,7 +22,7 @@ export const getToken: RequestHandler = async (
 
     const verifiedToken = JWT.verify(auth_token, `${config.JWT_SECRET_KEY}`);
 
-    return verifiedToken;
+    return auth_token;
   } catch (e) {
     return res.status(400).json({ error: true, msg: String(e) });
   }

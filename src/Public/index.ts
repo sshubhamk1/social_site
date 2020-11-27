@@ -7,6 +7,6 @@ import authRoutes from "./Routes/authRoutes";
 const router = Router();
 
 // giving route path to different routes of public role
-router.use("/auth", authRoutes);
+router.use("/user/auth", authRoutes);
 
 export default router;

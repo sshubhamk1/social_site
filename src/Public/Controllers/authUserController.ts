@@ -3,6 +3,7 @@ import { Users, UsersAttributes } from "../../Engine/Models/users";
 import { v4 as uuidv4 } from "uuid";
 import bcrpyt from "bcryptjs";
 import { generateToken } from "../../Engine/Helpers/authHelper";
+import { User_auth } from "../../Engine/Models/user_auth";
 
 export const postSignIn: RequestHandler = async (
   req: Request,
@@ -23,7 +24,11 @@ export const postSignIn: RequestHandler = async (
       id: user.username,
       first_name: user.first_name,
     });
-
+    const user_auth_data = {
+      user_id: user.id,
+      auth_key: auth_token,
+    };
+    await User_auth.create(user_auth_data);
     return res.status(200).json({ error: false, auth_token });
   } catch (e) {
     return res.status(400).json({ error: true, msg: String(e) });
@@ -37,7 +42,6 @@ export const postSignup: RequestHandler = async (
 ) => {
   try {
     const { first_name, last_name, email, password } = req.body;
-
     const userData: UsersAttributes = {
       first_name,
       last_name,
@@ -45,7 +49,6 @@ export const postSignup: RequestHandler = async (
       password: await bcrpyt.hash(password, 10),
       username: uuidv4(),
     };
-
     const user = await Users.create(userData);
 
     const user_data: UsersAttributes = {
