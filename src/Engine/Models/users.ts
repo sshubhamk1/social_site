@@ -1,12 +1,15 @@
-import { Sequelize, DataTypes, Model, DATE } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import { sequelize } from "./index";
-import { v4 as uuidv4 } from "uuid";
 export interface UsersAttributes {
+  username?: string;
   first_name?: string;
   last_name?: string;
   email?: string;
+  phone?: string;
+  country?: string;
+  gender?: string;
   password?: string;
-  guid?: string;
+  reset_token?: string;
 }
 
 export class Users extends Model {
@@ -15,11 +18,15 @@ export class Users extends Model {
   updatedAt!: Date;
   deletedAt!: Date;
 
+  username!: string;
   first_name!: string;
   last_name!: string;
   email!: string;
+  phone!: string;
+  country!: string;
+  gender!: string;
   password!: string;
-  guid!: string;
+  reset_token!: string;
 }
 
 Users.init(
@@ -42,6 +49,11 @@ Users.init(
       allowNull: true,
     },
 
+    username: {
+      type: DataTypes.STRING,
+      unique: true,
+      allowNull: false,
+    },
     first_name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -52,17 +64,27 @@ Users.init(
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: false,
       unique: true,
+    },
+    phone: {
+      type: DataTypes.STRING,
+      unique: true,
+    },
+    country: {
+      type: DataTypes.STRING,
+      defaultValue: "india",
+    },
+    gender: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    guid: {
-      type: DataTypes.UUIDV4,
-      allowNull: false,
-      unique: true,
+    reset_token: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
   },
   {
