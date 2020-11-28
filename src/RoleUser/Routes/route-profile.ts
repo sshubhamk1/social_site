@@ -1,5 +1,5 @@
 import { Router } from "express";
-import * as adminController from "../Controllers/profileController";
+import * as profileController from "../Controllers/profileController";
 const router = Router();
 
 /**
@@ -22,7 +22,7 @@ const router = Router();
  *              description: Failed
  */
 
-router.route("/allusers").get(adminController.getAllUser);
+router.route("/allusers").get(profileController.getAllUser);
 
 /**
  *  @swagger
@@ -43,6 +43,6 @@ router.route("/allusers").get(adminController.getAllUser);
  *          '400':
  *              description: Failed
  */
-router.route("/viewprofile").get(adminController.getProfile);
+router.route("/viewprofile").get(profileController.getProfile);
 
 export default router;
